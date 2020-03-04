@@ -1,0 +1,7 @@
+[server]
+host = "localhost"
+port = "3002"
+
+[db]
+user = "root"
+pass = "pass"
