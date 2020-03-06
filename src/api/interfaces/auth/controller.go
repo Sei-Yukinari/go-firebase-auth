@@ -16,8 +16,13 @@ type Controller struct {
 }
 
 // NewUserController returns the resource of users.
-func NewAuthController(logger usecases.Logger) *Controller {
+func NewAuthController(authHandler interfaces.AuthHandler, logger usecases.Logger) *Controller {
 	return &Controller{
+		AuthInteractor: authUsecase.Interactor{
+			AuthRepository: &Repository{
+				AuthHandler: authHandler,
+			},
+		},
 		Logger: logger,
 	}
 }
@@ -26,12 +31,11 @@ func NewAuthController(logger usecases.Logger) *Controller {
 func (ac *Controller) Index(c interfaces.Context) {
 	ac.AuthInteractor.VerifyFirebaseToken(context.Background(), "123")
 	a := domain.Auth{UID: 1, Name: "2222"}
-	println("main logic")
 	_ = c.Bind(&a)
-	//auth := ac.AuthInteractor.VerifyFirebaseToken(c)
-	//if err != nil {
-	//	c.JSON(500, err)
-	//	return
-	//}
-	c.JSON(200, a)
+	auth, err := ac.AuthInteractor.VerifyFirebaseToken(context.Background(), "123")
+	if err != nil {
+		c.JSON(500, err)
+		return
+	}
+	c.JSON(200, auth)
 }

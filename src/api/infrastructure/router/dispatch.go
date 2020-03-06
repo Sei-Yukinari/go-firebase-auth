@@ -24,7 +24,7 @@ func userRouter(r *gin.RouterGroup, sqlHandler interfaces.SQLHandler, logger use
 }
 
 func authRouter(r *gin.RouterGroup, authHandler interfaces.AuthHandler, logger usecases.Logger) {
-	authController := auth.NewAuthController(logger)
+	authController := auth.NewAuthController(authHandler, logger)
 	auth := r.Group("/auth")
 
 	auth.Use(middleware.Authorize(authHandler))

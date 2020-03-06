@@ -11,6 +11,8 @@ type Repository struct {
 }
 
 func (repo *Repository) VerifyFirebaseToken(ctx context.Context, token string) (auth domain.Auth, err error) {
-	_, err = repo.AuthHandler.VerifyIDToken(ctx, token)
+	if _, err = repo.AuthHandler.VerifyIDToken(ctx, token); err != nil {
+		return
+	}
 	return
 }
