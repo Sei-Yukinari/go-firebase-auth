@@ -1,8 +1,8 @@
 package router
 
 import (
-	"api/interfaces"
-	"api/usecases"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases"
 
 	"github.com/gin-gonic/gin"
 )

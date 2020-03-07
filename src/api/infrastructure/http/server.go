@@ -1,16 +1,17 @@
 package http
 
 import (
-	"api/infrastructure/auth"
-	"api/infrastructure/db"
-	"api/infrastructure/log"
-	"api/infrastructure/router"
 	"fmt"
+
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/auth"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/db"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/log"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/router"
 
 	"github.com/fvbock/endless"
 
-	"api/config"
-	"api/infrastructure/env"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/config"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/env"
 
 	_ "github.com/go-sql-driver/mysql"
 )

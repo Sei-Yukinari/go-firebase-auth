@@ -1,7 +1,7 @@
 package main
 
 import (
-	"api/infrastructure/http"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/http"
 )
 
 func main() {

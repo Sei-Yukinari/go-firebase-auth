@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"api/usecases"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases"
 )
 
 // A Logger belong to the infrastructure layer.

@@ -1,11 +1,11 @@
 package router
 
 import (
-	"api/interfaces"
-	"api/interfaces/auth"
-	"api/interfaces/user"
-	"api/middleware"
-	"api/usecases"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces/auth"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces/user"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/middleware"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases"
 
 	"github.com/gin-gonic/gin"
 )

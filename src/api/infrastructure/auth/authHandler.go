@@ -1,10 +1,11 @@
 package auth
 
 import (
-	"api/infrastructure/env"
-	"api/interfaces"
 	"context"
 	"path/filepath"
+
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/env"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
 
 	fire "firebase.google.com/go"
 	"google.golang.org/api/option"

@@ -1,6 +1,6 @@
 package userUsecase
 
-import "api/domain"
+import "github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
 
 // A UserInteractor belong to the usecases layer.
 type UserInteractor struct {

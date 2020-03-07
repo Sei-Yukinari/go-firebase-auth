@@ -1,12 +1,13 @@
 package user
 
 import (
-	"api/domain"
-	"api/interfaces"
-	"api/usecases"
 	"strconv"
 
-	userUsecase "api/usecases/user"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases"
+
+	userUsecase "github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases/user"
 )
 
 // A UserController belong to the interface layer.

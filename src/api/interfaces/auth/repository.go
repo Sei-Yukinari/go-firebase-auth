@@ -1,9 +1,10 @@
 package auth
 
 import (
-	"api/domain"
-	"api/interfaces"
 	"context"
+
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
 )
 
 type Repository struct {

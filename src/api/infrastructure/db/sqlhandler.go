@@ -1,9 +1,10 @@
 package db
 
 import (
-	"api/infrastructure/env"
-	"api/interfaces"
 	"fmt"
+
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/env"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
 
 	"github.com/jinzhu/gorm"
 )

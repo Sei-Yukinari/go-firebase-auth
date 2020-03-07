@@ -1,8 +1,8 @@
 package user
 
 import (
-	"api/domain"
-	"api/interfaces"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
 )
 
 // A UserRepository belong to the interface layer

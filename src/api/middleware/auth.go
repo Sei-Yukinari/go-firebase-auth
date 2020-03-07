@@ -1,12 +1,13 @@
 package middleware
 
 import (
-	"api/infrastructure/util"
-	"api/interfaces"
 	"context"
 	"fmt"
 	"log"
 	netHttp "net/http"
+
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/util"
+	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
 
 	"github.com/gin-gonic/gin"
 )
