@@ -8,24 +8,16 @@ schema:
     commands:
       install:
         status: true
-        method: go build -o /server main.go
+        method: go build -o server
       run:
         status: true
-        method: /go/bin/dlv
-    args:
-      - exec
-      - /server
-      - --headless=true
-      - --listen=:2345
-      - --api-version=2
-      - --accept-multiclient
+        method: ./server
     watcher:
       extensions:
         - go
       paths:
         - /
-      ignore:
-        paths:
-          - .git
-          - .realize
-          - vendor
+      ignored_paths:
+        - .git
+        - .realize
+        - vendor

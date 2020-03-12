@@ -3,8 +3,8 @@ package db
 import (
 	"fmt"
 
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/env"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
+	"api/infrastructure/env"
+	"api/interfaces"
 
 	"github.com/jinzhu/gorm"
 )
@@ -19,6 +19,7 @@ func NewSQLHandler() (interfaces.SQLHandler, error) {
 	fmt.Printf("dataSourceName : %s", dataSourceName)
 	conn, err := gorm.Open(env.DbDriver, dataSourceName)
 	if err != nil {
+		fmt.Printf("Can not open DB : %s", err)
 		panic(err.Error)
 	}
 	err = conn.DB().Ping()

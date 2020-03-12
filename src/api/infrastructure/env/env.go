@@ -7,13 +7,15 @@ import (
 )
 
 type Env struct {
-	DbDriver    string `env:"DB_DRIVER" envDefault:"mysql"`
-	DbUser      string `env:"DB_USER" envDefault:"user"`
-	DbPassword  string `env:"DB_PASSWORD" envDefault:"password"`
-	DbHost      string `env:"DB_HOST" envDefault:"localhost"`
-	DbPort      string `env:"DB_PORT" envDefault:"3314"`
-	DbDatabase  string `env:"DB_DATABASE" envDefault:"sample_db"`
-	Credentials string `env:"CREDENTIALS" envDefault:"src/api/config/serviceAccountKey.json"`
+	APIPort                    string `env:"API_PORT" envDefault:"3302"`
+	DbDriver                   string `env:"DB_DRIVER" envDefault:"mysql"`
+	DbUser                     string `env:"DB_USER" envDefault:"user"`
+	DbPassword                 string `env:"DB_PASSWORD" envDefault:"password"`
+	DbHost                     string `env:"DB_HOST" envDefault:"localhost"`
+	DbPort                     string `env:"DB_PORT" envDefault:"3314"`
+	DbDatabase                 string `env:"DB_DATABASE" envDefault:"sample_db"`
+	DbURL                      string `env:"DB_URL" envDefault:"user:password@tcp(localhost:3314)/sample_db"`
+	FirebaseServiceAccountJSON string `env:"FIREBASE_SERVICE_ACCOUNT_JSON" envDefault:"config/serviceAccountKey.json"`
 }
 
 // Load is load configs from a env file.

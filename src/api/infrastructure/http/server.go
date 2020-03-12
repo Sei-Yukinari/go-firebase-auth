@@ -1,24 +1,18 @@
 package http
 
 import (
+	"api/infrastructure/auth"
+	"api/infrastructure/env"
+	"api/infrastructure/log"
+	"api/infrastructure/router"
 	"fmt"
-
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/auth"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/db"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/log"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/router"
-
 	"github.com/fvbock/endless"
 
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/config"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/env"
-
+	"api/infrastructure/db"
 	_ "github.com/go-sql-driver/mysql"
 )
 
 func StartHttpServer() {
-	c := config.Load()
-	env.Load()
 	sqlHandler, err := db.NewSQLHandler()
 	if err != nil {
 		fmt.Printf("Error : [%s]", err)
@@ -28,7 +22,7 @@ func StartHttpServer() {
 		fmt.Printf("Error : [%s]", err)
 	}
 	logger := log.NewLogger()
-	if err := endless.ListenAndServe(":"+c.Server.Port, router.Handler(sqlHandler, authHandler, logger)); err != nil {
+	if err := endless.ListenAndServe(":"+env.Load().APIPort, router.Handler(sqlHandler, authHandler, logger)); err != nil {
 		fmt.Printf("Error : [%s]", err)
 	}
 }

@@ -1,31 +1,24 @@
-# create API image
+#Step 1 Builld
+FROM golang:alpine as builder
 
-# base image
-FROM golang:1.13.1-alpine
+RUN apk update \
+  && apk add git
 
-# `dep ensure` excute directory
 WORKDIR /go/src/api/
 
-# Copy Gopkg.toml in advance so that `dev ensure` can be executed
-#COPY Gopkg.toml Gopkg.lock ./
-COPY src/api /go/src/api/
+COPY src/api/ .
 
-# package install
-RUN set -x \
-  && apk update \
-  && apk add --no-cache git \
-  # Web Framework
-  && go get -u github.com/codegangsta/gin \
-  # Package Manager
-  && go get -u github.com/golang/dep/cmd/dep \
-  && dep ensure -v -vendor-only=true \
-  # Hot Reload
-  && go get -u github.com/oxequa/realize \
-  # Debugger
-  && go get -u github.com/derekparker/delve/cmd/dlv \
-  && go build -o /go/bin/dlv github.com/go-delve/delve/cmd/dlv \
-  # create entry point
-  && go build -gcflags "-N -l" -o /server main.go
+RUN go mod download
 
-# exec
-CMD ["./server"]
+RUN go build -o /server
+
+#Step2 Move build file
+FROM alpine:3.9
+
+RUN apk add --no-cache     mysql-client \
+                           mysql-dev \
+                           alpine-sdk
+
+COPY --from=builder /server .
+
+ENTRYPOINT ["sh","/go/src/api/entrypoint.sh"]

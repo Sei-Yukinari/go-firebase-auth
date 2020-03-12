@@ -1,7 +1,9 @@
 package config
 
 import (
+	"fmt"
 	"github.com/BurntSushi/toml"
+	"os"
 )
 
 type Config struct {
@@ -19,11 +21,13 @@ type DbConfig struct {
 	Pass string `toml:"pass"`
 }
 
-const configPath string = "config/default.toml"
+const configFile string = "src/api/config/default.toml"
 
 func Load() Config {
+	p, _ := os.Getwd()
 	var config Config
-	if _, err := toml.DecodeFile(configPath, &config); err != nil {
+	fmt.Println(p + configFile)
+	if _, err := toml.DecodeFile(p+configFile, &config); err != nil {
 		panic(err)
 	}
 	return config

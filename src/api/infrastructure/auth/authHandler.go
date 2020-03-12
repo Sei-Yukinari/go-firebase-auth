@@ -1,11 +1,11 @@
 package auth
 
 import (
+	"api/infrastructure/env"
+	"api/interfaces"
 	"context"
+	"fmt"
 	"path/filepath"
-
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/infrastructure/env"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
 
 	fire "firebase.google.com/go"
 	"google.golang.org/api/option"
@@ -19,13 +19,15 @@ type Handler struct {
 
 func NewAuthHandler() (interfaces.AuthHandler, error) {
 	var env = env.Load()
-	filename, err := filepath.Abs(env.Credentials)
+	filename, err := filepath.Abs(env.FirebaseServiceAccountJSON)
 	if err != nil {
+		fmt.Printf("filename : %s", filename)
 		panic(err.Error)
 	}
 	opt := option.WithCredentialsFile(filename)
 	app, err := fire.NewApp(context.Background(), nil, opt)
 	if err != nil {
+		fmt.Printf("firebase Error : %s", err)
 		panic(err.Error)
 	}
 	client, err := app.Auth(context.Background())
