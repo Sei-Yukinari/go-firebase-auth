@@ -15,7 +15,7 @@ type Env struct {
 	DbPort                     string `env:"DB_PORT" envDefault:"3314"`
 	DbDatabase                 string `env:"DB_DATABASE" envDefault:"sample_db"`
 	DbURL                      string `env:"DB_URL" envDefault:"user:password@tcp(localhost:3314)/sample_db"`
-	FirebaseServiceAccountJSON string `env:"FIREBASE_SERVICE_ACCOUNT_JSON" envDefault:"config/serviceAccountKey.json"`
+	FirebaseServiceAccountJSON string `env:"FIREBASE_SERVICE_ACCOUNT_JSON" envDefault:"src/api/config/serviceAccountKey.json"`
 }
 
 // Load is load configs from a env file.

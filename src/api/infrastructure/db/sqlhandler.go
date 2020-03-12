@@ -63,3 +63,7 @@ func (handler *SQLHandler) Delete(value interface{}) *gorm.DB {
 func (handler *SQLHandler) Where(query interface{}, args ...interface{}) *gorm.DB {
 	return handler.Conn.Where(query, args...)
 }
+
+func (handler *SQLHandler) Migrate(values ...interface{}) *gorm.DB {
+	return handler.Conn.AutoMigrate(values...)
+}
