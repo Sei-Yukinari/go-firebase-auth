@@ -35,11 +35,16 @@ ps:
 
 ### Show logs from selected environment
 .PHONY: logs
+ifeq (logs,$(firstword $(MAKECMDGOALS)))
+  RUN_ARGS := $(wordlist 2,$(words $(MAKECMDGOALS)),$(MAKECMDGOALS))
+  $(eval $(RUN_ARGS):;@:)
+endif
 logs:
-	${COMPOSE_COMMAND} logs -f api
+	${COMPOSE_COMMAND} logs -f $(RUN_ARGS)
 
-.PHONY: exec-api
-exec-api:
+### Enter Conteiner
+.PHONY: exec
+exec:
 	${COMPOSE_COMMAND} exec ${SERVICE_API} ash
 
 .PHONY: exec-db
