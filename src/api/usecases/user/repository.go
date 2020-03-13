@@ -1,7 +1,7 @@
 package userUsecase
 
 import (
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
+	"api/domain"
 )
 
 // UserRepository belong to the usecases layer.

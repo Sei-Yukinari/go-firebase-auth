@@ -3,11 +3,11 @@ package user
 import (
 	"strconv"
 
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/interfaces"
-	"github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases"
+	"api/domain"
+	"api/interfaces"
+	"api/usecases"
 
-	userUsecase "github.com/Sei-Yukinari/go-firebase-auth/src/api/usecases/user"
+	userUsecase "api/usecases/user"
 )
 
 // A UserController belong to the interface layer.
@@ -32,7 +32,7 @@ func NewUserController(sqlHandler interfaces.SQLHandler, logger usecases.Logger)
 func (uc *Controller) Index(c interfaces.Context) {
 	u := domain.User{}
 	c.Bind(&u)
-	users, err := uc.UserInteractor.Index()
+	users, err := uc.UserInteractor.FindAll()
 	if err != nil {
 		c.JSON(500, err)
 		return

@@ -1,6 +1,6 @@
 package userUsecase
 
-import "github.com/Sei-Yukinari/go-firebase-auth/src/api/domain"
+import "api/domain"
 
 // A UserInteractor belong to the usecases layer.
 type UserInteractor struct {
@@ -8,7 +8,7 @@ type UserInteractor struct {
 }
 
 // Index is display a listing of the resource.
-func (ui *UserInteractor) Index() (users domain.Users, err error) {
+func (ui *UserInteractor) FindAll() (users domain.Users, err error) {
 	users, err = ui.UserRepository.FindAll()
 	return
 }
