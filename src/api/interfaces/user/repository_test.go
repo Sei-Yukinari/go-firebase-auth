@@ -2,7 +2,7 @@ package user
 
 import (
 	"api/domain"
-	"api/mocks/interfaces/user"
+	"api/mocks/usecases/user"
 	"github.com/golang/mock/gomock"
 	"reflect"
 	"testing"
@@ -10,10 +10,10 @@ import (
 
 var err error
 
-func mockUserRepository(t *testing.T) *mock_userRepository.MockUserRepository {
+func mockUserRepository(t *testing.T) *mock_userUsecase.MockUserRepository {
 	ctrl := gomock.NewController(t)
 	defer ctrl.Finish()
-	return mock_userRepository.NewMockUserRepository(ctrl)
+	return mock_userUsecase.NewMockUserRepository(ctrl)
 }
 
 func TestFindAll(t *testing.T) {
