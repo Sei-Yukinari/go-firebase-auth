@@ -1,6 +1,7 @@
 package user
 
 import (
+	"api/domain"
 	"strconv"
 
 	"api/interfaces"
@@ -29,8 +30,8 @@ func NewUserController(sqlHandler interfaces.SQLHandler, logger usecases.Logger)
 
 // Index return response which contain a listing of the resource of users.
 func (uc *Controller) Index(c interfaces.Context) {
-	//u := domain.User{}
-	//c.Bind(&u)
+	u := domain.User{}
+	c.Bind(&u)
 	users, err := uc.UserInteractor.FindAll()
 	if err != nil {
 		c.JSON(500, err)
