@@ -29,7 +29,6 @@ func testMiddlewareRequest(t *testing.T, r *gin.Engine, expectedHTTPCode int, to
 	req, _ := http.NewRequest("GET", "/", nil)
 	if len(token) != 0 {
 		req.Header.Set("Authorization", token)
-
 	}
 	testHTTPResponse(t, r, req, func(w *httptest.ResponseRecorder) bool {
 		return w.Code == expectedHTTPCode

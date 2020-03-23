@@ -12,6 +12,7 @@ import (
 
 func Dispatch(r *gin.Engine, sqlHandler interfaces.SQLHandler, authHandler interfaces.AuthHandler, logger usecases.Logger) {
 	apiV1 := r.Group("/api/v1")
+	apiV1.Use(middleware.CORS())
 	userRouter(apiV1, sqlHandler, logger)
 	authRouter(apiV1, authHandler, logger)
 }
