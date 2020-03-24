@@ -2,6 +2,8 @@ package user
 
 import (
 	"api/domain"
+	"api/infrastructure/util"
+	"net/http"
 	"strconv"
 
 	"api/interfaces"
@@ -28,25 +30,40 @@ func NewUserController(sqlHandler interfaces.SQLHandler, logger usecases.Logger)
 	}
 }
 
-// Index return response which contain a listing of the resource of users.
+// Index godoc
+// @Summary Show users
+// @Description get user all
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} domain.Users
+// @Failure 500 {object} util.HTTPError
+// @Router /user [get]
 func (uc *Controller) Index(c interfaces.Context) {
 	u := domain.User{}
 	c.Bind(&u)
 	users, err := uc.UserInteractor.FindAll()
 	if err != nil {
-		c.JSON(500, err)
+		util.NewError(c, http.StatusInternalServerError, err)
 		return
 	}
-	c.JSON(200, users)
+	c.JSON(http.StatusOK, users)
 }
 
-// Show return response which contain the specified resource of a user.
+// Show godoc
+// @Summary Show user
+// @Description get user by ID
+// @Accept  json
+// @Produce  json
+// @Param id path int true "User ID"
+// @Success 200 {object} domain.User
+// @Failure 500 {object} util.HTTPError
+// @Router /user/{id} [get]
 func (uc *Controller) Show(c interfaces.Context) {
 	id, _ := strconv.Atoi(c.Param("id"))
 	user, err := uc.UserInteractor.Show(id)
 	if err != nil {
-		c.JSON(500, interfaces.NewError(err))
+		util.NewError(c, http.StatusInternalServerError, err)
 		return
 	}
-	c.JSON(200, user)
+	c.JSON(http.StatusOK, user)
 }

@@ -15,14 +15,17 @@ import (
 )
 
 func StartHttpServer() {
+	//Create SQL Handler
 	sqlHandler, err := db.NewSQLHandler()
 	if err != nil {
 		fmt.Printf("Error : [%s]", err)
 	}
 
+	//Database migration
 	migration.Exec(sqlHandler)
 	seed.Exec(sqlHandler)
 
+	//Create Auth Handler
 	authHandler, err := auth.NewAuthHandler()
 	if err != nil {
 		fmt.Printf("Error : [%s]", err)
