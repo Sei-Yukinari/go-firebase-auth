@@ -33,6 +33,7 @@ func NewUserController(sqlHandler interfaces.SQLHandler, logger usecases.Logger)
 // Index godoc
 // @Summary Show users
 // @Description get user all
+// @Tags user
 // @Accept  json
 // @Produce  json
 // @Success 200 {object} domain.Users
@@ -52,6 +53,7 @@ func (uc *Controller) Index(c interfaces.Context) {
 // Show godoc
 // @Summary Show user
 // @Description get user by ID
+// @Tags user
 // @Accept  json
 // @Produce  json
 // @Param id path int true "User ID"

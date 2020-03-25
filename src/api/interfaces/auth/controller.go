@@ -1,7 +1,9 @@
 package auth
 
 import (
+	"api/infrastructure/util"
 	"context"
+	"net/http"
 
 	"api/domain"
 	"api/interfaces"
@@ -28,15 +30,23 @@ func NewAuthController(authHandler interfaces.AuthHandler, logger usecases.Logge
 	}
 }
 
-// Index return response which contain a listing of the resource of users.
+// Show godoc
+// @Summary Show auth
+// @Description get Auth
+// @Tags auth
+// @Accept  json
+// @Produce  json
+// @Success 200 {object} domain.Auth
+// @Failure 500 {object} util.HTTPError
+// @Router /auth [get]
 func (ac *Controller) Index(c interfaces.Context) {
 	ac.AuthInteractor.VerifyFirebaseToken(context.Background(), "123")
 	a := domain.Auth{UID: 1, Name: "2222"}
 	_ = c.Bind(&a)
 	auth, err := ac.AuthInteractor.VerifyFirebaseToken(context.Background(), "123")
 	if err != nil {
-		c.JSON(500, err)
+		util.NewError(c, http.StatusInternalServerError, err)
 		return
 	}
-	c.JSON(200, auth)
+	c.JSON(http.StatusOK, auth)
 }
